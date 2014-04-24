@@ -43,14 +43,16 @@ public class HW6Activity extends Activity {
 			button.setTextColor(android.graphics.Color.BLUE);
 			button.setClickable(true);
 			button.setTextSize(12f);
+			button.setId(i);
 			button.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					model.setSelectedData(button.getText().toString());
+					model.setSelectedWordIndex(button.getId());
 					Log.i("CLICKED!", button.getText().toString());
 				}
 			});
 			ll.addView(button);
+			
 		}
 		ll.setPadding(0,0,0,2);
 	}

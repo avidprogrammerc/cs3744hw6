@@ -40,6 +40,13 @@ public class HW6Renderer implements GLSurfaceView.Renderer
         gl.glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
         indexBuffer.position(0);
         gl.glDrawElements(GL10.GL_TRIANGLES, 6 * lineCount, GL10.GL_UNSIGNED_SHORT, indexBuffer);
+        
+        if(model.getSelectedWordIndex() !=-1)
+        {
+        	gl.glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+        	indexBuffer.position(model.getSelectedWordIndex()*6);
+        	gl.glDrawElements(GL10.GL_TRIANGLES, 6 * 1, GL10.GL_UNSIGNED_SHORT, indexBuffer);
+        }
     }
 
     @Override

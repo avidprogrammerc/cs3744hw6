@@ -4,9 +4,9 @@ public class HW6Model
 {
     private float scale, translationY;
     private String[] data = null;
-    private String selectedString;
     private int[] lengths = null;
     private int maxLength = 0;
+    private int selectedIndex = -1;
 
     public HW6Model() {
         data = new String[0];
@@ -36,20 +36,17 @@ public class HW6Model
         update();
         return data;
     }
-    
-    public String setSelectedData(String d)
-    {
-    	if(d != null)
-    	{
-    		selectedString = d;
-    	}
-    	else
-    	{
-    		selectedString = "";
-    	}
-    	return selectedString;
-    }
 
+    public void setSelectedWordIndex(int index)
+    {
+    	selectedIndex = index;
+    }
+    
+    public int getSelectedWordIndex()
+    {
+    	return selectedIndex;
+    }
+    
     public void setScale(float s) {
         scale = s;
     }
