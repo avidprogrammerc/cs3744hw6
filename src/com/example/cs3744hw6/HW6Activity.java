@@ -19,10 +19,9 @@ public class HW6Activity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.hw6_activity);
-		commandLineArgs = getString(R.string.commandLine);
-		commandArray = commandLineArgs.split("\\s+");
 		model = new HW6Model();
-		model.setCompoundData(commandLineArgs);
+		commandLineArgs = getString(R.string.commandLine);
+		commandArray = model.setCompoundData(commandLineArgs);
 		glView = (HW6GLSurfaceView) findViewById(R.id.glSurfaceView);
         glView.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
         glView.setModel(model);
@@ -31,18 +30,18 @@ public class HW6Activity extends Activity {
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		LinearLayout ll = (LinearLayout) findViewById(R.id.button_layout);
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				ll.getWidth(), 0, 1);
+		params.setMargins(0, 2, 0, 0);
+		
 		for (int i = 0; i < commandArray.length; i++) {
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-					ll.getWidth(), ll.getHeight() / commandArray.length);
-			params.setMargins(0, 2, 0, 0);
-
 			final Button button = new Button(this);
 			button.setLayoutParams(params);
 			button.setText(commandArray[i]);
+			button.setTextSize(12f);
 			button.setBackgroundColor(android.graphics.Color.WHITE);
 			button.setTextColor(android.graphics.Color.BLUE);
 			button.setClickable(true);
-			button.setTextSize(12f);
 			button.setId(i);
 			button.setOnClickListener(new View.OnClickListener() {
 				@Override
