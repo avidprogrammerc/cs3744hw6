@@ -1,4 +1,4 @@
-package com.example.cs3744hw6;
+package edu.vt.cs.cs3744.hw6;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -8,6 +8,12 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import android.opengl.GLSurfaceView;
 
+/**
+ * This represents the custom Renderer
+ * 
+ * @author Chris Conley and Denis Gracanin
+ *@version April 24, 2014
+ */
 public class HW6Renderer implements GLSurfaceView.Renderer
 {
     private HW6Model model = null;
@@ -17,18 +23,29 @@ public class HW6Renderer implements GLSurfaceView.Renderer
     private ShortBuffer indexBuffer = null;
     private int lineCount = 0;
 
+    /**
+     * Instructor for Renderer that takes a model
+     * 
+     * @param m model
+     */
     public HW6Renderer(HW6Model m)
     {
         super();
         model = m;
     }
 
+    /**
+     * Initializer
+     */
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         setData(model.getMaxLength(), model.getLengths());
     }
 
+    /**
+     * Draw method
+     */
     @Override
     public void onDrawFrame(GL10 gl) {
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -41,7 +58,7 @@ public class HW6Renderer implements GLSurfaceView.Renderer
         indexBuffer.position(0);
         gl.glDrawElements(GL10.GL_TRIANGLES, 6 * lineCount, GL10.GL_UNSIGNED_SHORT, indexBuffer);
         
-        if(model.getSelectedWordIndex() !=-1)
+        if(model.getSelectedWordIndex() != -1)
         {
         	gl.glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
         	indexBuffer.position(model.getSelectedWordIndex()*6);
@@ -49,11 +66,20 @@ public class HW6Renderer implements GLSurfaceView.Renderer
         }
     }
 
+    /**
+     * Not used
+     */
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         gl.glViewport(0, 0, width, height);
     }
 
+    /**
+     * Sets the data
+     * 
+     * @param m row width
+     * @param c array of columns
+     */
     public void setData(int m, int[] c) {
         short n = (short) c.length;
         lineCount = n;
@@ -115,18 +141,38 @@ public class HW6Renderer implements GLSurfaceView.Renderer
         indexBuffer.position(0);
     }
 
+    /**
+     * Sets the scale for the glSurfaceView
+     * 
+     * @param s scale factor
+     */
     public void setScaleY(float s) {
         scaleY = s;
     }
 
+    /**
+     * Gets the scale for the glSurfaceView
+     * 
+     * @return float
+     */
     public float getScaleY() {
         return scaleY;
     }
 
+    /**
+     * Sets the translation for the glSurfaceView
+     * 
+     * @param t translation factor
+     */
     public void setTranslationY(float t) {
         translationY = t;
     }
 
+    /**
+     * Gets the translation for the glSurfaceView
+     * 
+     * @return float
+     */
     public float getTranslationY() {
         return translationY;
     }

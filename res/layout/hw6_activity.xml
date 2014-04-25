@@ -12,7 +12,7 @@
         android:layout_weight="1">
     </LinearLayout>
 
-    <com.example.cs3744hw6.HW6GLSurfaceView
+    <edu.vt.cs.cs3744.hw6.HW6GLSurfaceView
         android:id="@+id/glSurfaceView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
